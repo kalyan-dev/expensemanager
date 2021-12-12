@@ -56,14 +56,18 @@
 - https://pub.dev/packages/intl/install
 - flutter pub add intl
 - flutter pub get
+- DateFormat.yMMMd().format(tx.date),
+-
+
+## adding scroller
+- SingleChildScrollView()
+- at body, at card;
+-
 - 
--
--
--
--
--
--
--
+
+##  ListView()
+- a combination of  SingleChildScrollView() + Column(); 
+- wrap inside a Container;
 -
 -
 -

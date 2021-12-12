@@ -69,24 +69,35 @@
 - a combination of  SingleChildScrollView() + Column(); 
 - wrap inside a Container;
 -
+- ListView.builder(
+        itemBuilder: (ctx, index) {}
+-       itemCount:
+-
+-
+
+## Adding floating button
+-
+- so we should make the HomePage(), a Statefulwgt;
+- 
+- Add Icon() in the AppBar();
+- showModalBottomSheet()
+- floatingActionButton()
+- 
+- (_){}; this function accepts a parameter and does not use it; 
+-
+- Handle the Submit,onpressed events to Add the new Transaction;
+-
+-
+
+##  Add basic validation on Submit
 -
 -
 -
+- keyboardType: TextInputType.number,
 -
 -
--
--
--
--
--
--
--
--
--
--
--
--
--
+
+## 
 -
 -
 -

@@ -49,14 +49,14 @@
 -
 
 ## Split the App into Wgts;
--
--
--
--
--
--
--
--
+- 
+-  also handle the add_transaction onpressed;
+- 
+- '\$${tx.amount.toString()}',
+- https://pub.dev/packages/intl/install
+- flutter pub add intl
+- flutter pub get
+- 
 -
 -
 -

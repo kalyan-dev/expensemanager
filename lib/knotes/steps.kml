@@ -95,7 +95,7 @@
 -
 - keyboardType: TextInputType.number,
 -
--
+- NewTransaction is converted to Statefulwgt, otherwise the values entered in the text fields are getting disappeared.
 
 ## 
 -

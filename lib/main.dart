@@ -15,6 +15,24 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'My Second App',
       home: HomePage(),
+      theme: ThemeData(
+          primarySwatch: Colors.purple,
+          accentColor: Colors.amber,
+          textTheme: ThemeData.light().textTheme.copyWith(
+                bodyText1: TextStyle(
+                  fontFamily: 'OpenSans',
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                ),
+              ),
+          appBarTheme: AppBarTheme(
+            textTheme: ThemeData.light().textTheme.copyWith(
+                    bodyText1: TextStyle(
+                  fontFamily: 'OpenSans',
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                )),
+          )),
     );
   }
 }
@@ -29,22 +47,24 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final List<Transaction> transactions = [
-    Transaction(
-        id: 'tx1', title: 'New Shoes', amount: 1500, date: DateTime.now()),
-    Transaction(
-        id: 'tx2', title: 'Groceries', amount: 3500, date: DateTime.now()),
-    Transaction(id: 'tx3', title: 'Fruits', amount: 300, date: DateTime.now()),
-    Transaction(
-        id: 'tx1', title: 'Vegetables', amount: 250, date: DateTime.now()),
+    // Transaction(
+    //     id: 'tx1', title: 'New Shoes2', amount: 1500, date: DateTime.now()),
+    // Transaction(
+    //     id: 'tx2', title: 'Groceriessss', amount: 3500, date: DateTime.now()),
+    // Transaction(id: 'tx3', title: 'Fruits', amount: 300, date: DateTime.now()),
+    // Transaction(
+    //     id: 'tx1', title: 'Vegetables', amount: 250, date: DateTime.now()),
   ];
 
   void addTx(String inputTitle, double inputAmount) {
     var tx = Transaction(
-        id: DateTime.now().toString(),
-        title: inputTitle,
-        amount: inputAmount,
-        date: DateTime.now());
+      id: DateTime.now().toString(),
+      title: inputTitle,
+      amount: inputAmount,
+      date: DateTime.now(),
+    );
     setState(() {
+      print('transaction added');
       transactions.add(tx);
     });
   }
@@ -83,14 +103,13 @@ class _HomePageState extends State<HomePage> {
           children: [
             Container(
               width: double.infinity,
-              color: Colors.grey,
               child: Card(
                 child: Text('CHART'),
                 elevation: 5,
                 color: Colors.blue,
               ),
             ),
-            TransactionList(transactions)
+            TransactionList(transactions),
           ],
         ),
       ),

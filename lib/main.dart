@@ -1,7 +1,8 @@
-import 'package:expensemanager/widgets/new_transaction.dart';
-import 'package:expensemanager/widgets/transaction_list.dart';
+import './widgets/new_transaction.dart';
+import './widgets/transaction_list.dart';
 import 'package:flutter/material.dart';
 import './models/transaction.dart';
+import './widgets/chart.dart';
 
 void main(List<String> args) {
   return runApp(MyApp());
@@ -47,14 +48,24 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final List<Transaction> transactions = [
-    // Transaction(
-    //     id: 'tx1', title: 'New Shoes2', amount: 1500, date: DateTime.now()),
-    // Transaction(
-    //     id: 'tx2', title: 'Groceriessss', amount: 3500, date: DateTime.now()),
-    // Transaction(id: 'tx3', title: 'Fruits', amount: 300, date: DateTime.now()),
-    // Transaction(
-    //     id: 'tx1', title: 'Vegetables', amount: 250, date: DateTime.now()),
+    Transaction(
+        id: 'tx1', title: 'New Shoes2', amount: 1500, date: DateTime.now()),
+    Transaction(
+        id: 'tx2', title: 'Groceriessss', amount: 3500, date: DateTime.now()),
+    Transaction(id: 'tx3', title: 'Fruits', amount: 300, date: DateTime.now()),
+    Transaction(
+        id: 'tx1', title: 'Vegetables', amount: 250, date: DateTime.now()),
   ];
+
+  List<Transaction> get recentTransactions {
+    return transactions.where((tx) {
+      return tx.date.isAfter(
+        DateTime.now().subtract(
+          Duration(days: 7),
+        ),
+      );
+    }).toList();
+  }
 
   void addTx(String inputTitle, double inputAmount) {
     var tx = Transaction(
@@ -64,7 +75,6 @@ class _HomePageState extends State<HomePage> {
       date: DateTime.now(),
     );
     setState(() {
-      print('transaction added');
       transactions.add(tx);
     });
   }
@@ -101,14 +111,7 @@ class _HomePageState extends State<HomePage> {
           // mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Container(
-              width: double.infinity,
-              child: Card(
-                child: Text('CHART'),
-                elevation: 5,
-                color: Colors.blue,
-              ),
-            ),
+            Chart(recentTransactions),
             TransactionList(transactions),
           ],
         ),

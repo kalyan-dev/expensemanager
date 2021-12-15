@@ -12,7 +12,7 @@ class ChartBar extends StatelessWidget {
     return Column(
       children: [
         FittedBox(
-          child: Text('INR ${spendingAmount.toStringAsFixed(0)}'),
+          child: Text('Rs.${spendingAmount.toStringAsFixed(0)}'),
         ),
         SizedBox(
           height: 4,

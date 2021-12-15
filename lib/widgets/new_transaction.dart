@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class NewTransaction extends StatefulWidget {
   final Function addTx;
@@ -11,8 +12,8 @@ class NewTransaction extends StatefulWidget {
 
 class _NewTransactionState extends State<NewTransaction> {
   final titleController = TextEditingController();
-
   final amountController = TextEditingController();
+  DateTime? selectedDate;
 
   void submitData() {
     final title = titleController.text;
@@ -21,14 +22,26 @@ class _NewTransactionState extends State<NewTransaction> {
       amount = double.parse(amountController.text);
     }
 
-    if (title.isEmpty || amount <= 0) {
+    if (title.isEmpty || amount <= 0 || selectedDate == null) {
       return;
     }
-    widget.addTx(
-      title,
-      amount,
-    );
+    widget.addTx(title, amount, selectedDate);
     Navigator.of(context).pop();
+  }
+
+  void presentDatePicker() {
+    showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2021),
+      lastDate: DateTime.now(),
+    ).then((value) {
+      if (value != null) {
+        setState(() {
+          selectedDate = value;
+        });
+      }
+    });
   }
 
   @override
@@ -60,6 +73,28 @@ class _NewTransactionState extends State<NewTransaction> {
                 submitData();
               },
             ),
+            Container(
+              height: 70,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Text(selectedDate == null
+                        ? 'No Date Chosen'
+                        : '${DateFormat.yMd().format(selectedDate as DateTime)}'),
+                  ),
+                  FlatButton(
+                    onPressed: presentDatePicker,
+                    child: Text(
+                      'Choose Date',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
             // ignore: deprecated_member_use
             FlatButton(
               onPressed: submitData,

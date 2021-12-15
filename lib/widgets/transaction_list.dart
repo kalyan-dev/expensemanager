@@ -4,7 +4,9 @@ import 'package:intl/intl.dart';
 
 class TransactionList extends StatefulWidget {
   final List<Transaction> transactions;
-  TransactionList(this.transactions);
+  final Function deleteTx;
+
+  TransactionList(this.transactions, this.deleteTx);
 
   @override
   _TransactionListState createState() => _TransactionListState();
@@ -14,7 +16,7 @@ class _TransactionListState extends State<TransactionList> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 300,
+      height: 450,
       child: widget.transactions.isEmpty
           ? Column(
               children: [
@@ -57,8 +59,17 @@ class _TransactionListState extends State<TransactionList> {
                       widget.transactions[index].title,
                       style: Theme.of(context).textTheme.bodyText1,
                     ),
-                    subtitle: Text(DateFormat.yMMMd()
-                        .format(widget.transactions[index].date)),
+                    subtitle: Text(
+                      DateFormat.yMMMd()
+                          .format(widget.transactions[index].date),
+                    ),
+                    trailing: IconButton(
+                      icon: Icon(Icons.delete),
+                      color: Theme.of(context).errorColor,
+                      onPressed: () {
+                        widget.deleteTx(widget.transactions[index].id);
+                      },
+                    ),
                   ),
                 );
               },

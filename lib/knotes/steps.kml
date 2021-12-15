@@ -97,25 +97,34 @@
 -
 - NewTransaction is converted to Statefulwgt, otherwise the values entered in the text fields are getting disappeared.
 
+##  null safety issue
+-
+- DateTime? vs DateTime; 
+- casting when needed;
+- https://codewithandrea.com/videos/dart-null-safety-ultimate-guide-non-nullable-types/
+- https://dart.dev/null-safety/understanding-null-safety
+
+
+## showDatePicker() 
+-
+- .then()
+-
+- 
+
 ## 
+- ListTile(), CircleAvatar();
+- 
 -
 -
+
+## Delete Transaction
+- add the iconbutton, onpressed call deleteTransaction;
+- this function is in main(). passt this function ptr to transaction_list and recieve via constructor;
+- call this function "widget.deletetx()"
 -
 -
--
--
--
--
--
--
--
--
--
--
--
--
--
--
+
+## 
 -
 -
 -
